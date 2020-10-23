@@ -7,11 +7,19 @@ cursor.execute("""
                 where * = '1'
                 """)
 
-def order_by(tblName, paramArray):
-    
+def join_multiple(arrayList):
+    stringReturn = ""
+
+def order_table(paramArray, orderArray):
+    queryComponent = "ORDER BY " +
+
 
 def create_table(tblName, )
 
-def search_table(tblName, valuesArray, filterArray = [], order_by = "Asc"):
-    string = "Select "
-    print(cursor.execute(string))
+def search_table(tblName, valuesArray = ["*"], filterArray = [""], orderArray = ["Asc"]):
+    for i in range(len(valuesArray) - len(filterArray)):
+        filterArray.append("")
+    string = "Select "+",".join(valuesArray)+" from "+tblName
+    string +=" where "+", ".join([valuesArray[i] + " = " + filterArray[i] for i in range(len(valuesArray))])
+    string += "Order By " + ",".join(orderArray)
+    print(string)
