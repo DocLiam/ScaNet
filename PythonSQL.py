@@ -2,12 +2,7 @@ import pyodbc
 
 conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\progr\Documents\sandbox\Python\test.accdb;')
 cursor = conn.cursor()
-cursor.execute("""
-                SELECT * FROM Table1
-                where * = '1'
-                """)
 
-#pls dont edit danre
 def join_multiple(arrayList, delimList):
     """Joins multiple arrays with specific relevant delimeters."""
     stringReturn = ""
@@ -21,17 +16,20 @@ def join_multiple(arrayList, delimList):
 
     return stringReturn[:-2]
 
-#also no edit
 def order_table(attributeArray, orderArray):
     """Returns query component that will sort by attributes according to a specified order"""
     queryComponent = "ORDER BY " + join_multiple([attributeArray, orderArray], [" ", ","])
 
     return queryComponent
 
-#dont even think about it bro
 def create_table(tblName, attributeArray, typeArray):
     """Returns a query component that will create a table with attributes and given types"""
     queryComponent = "CREATE TABLE " + tblName + " (\n" + join_multiple([attributeArray, typeArray], [" ", "\n"]) + "\n);"
+
+    return queryComponent
+
+def alter_table(tblName, attributeName, typeName):
+    queryComponent = "ALTER TABLE " + tblName + "\nADD " + attributeName + " " + typeName + ";"
 
     return queryComponent
 
