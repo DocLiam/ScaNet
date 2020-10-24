@@ -2,6 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = "!";
 var content;
+const helpEmbed = new Discord.MessageEmbed()
+  .setColor("#ff2f00")
+  .setTitle("**Help**");
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -13,10 +16,10 @@ client.on('message', message => {
 
   if((content.startsWith("!") && channel.type != "dm") || (!content.startsWith("!") && channel.type == "dm")){
     if (content.endsWith("help")) {
-
+      channel.send(helpEmbed);
     }
     if (content.endsWith("register")) {
-
+      channel.send(helpEmbed);
     }
   }
 });
