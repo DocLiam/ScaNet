@@ -11,9 +11,9 @@ def join_multiple(arrayList, delimList):
 
     return stringReturn[:-2]
 
-def where_table(fieldArray1, fieldArray2, selectName):
+def where_table(fieldArray1, fieldArray2, comparatorArray, operatorArray):
     """Returns a query selection statement using two compared fields and the operator for comparison"""
-    queryComponent = "WHERE " + join_multiple([fieldArray1, selectName, fieldArray2], [" ", " ", ", "])
+    queryComponent = "WHERE " + join_multiple([fieldArray1, comparatorArray, fieldArray2, operatorArray], [" ", " ", " ", " "])
 
     return queryComponent
 
@@ -40,6 +40,8 @@ def alter_table(tblName, attributeName, typeName):
     queryComponent = "ALTER TABLE " + tblName + "\nADD " + attributeName + " " + typeName
 
     return queryComponent
+
+print(where_table())
 
 def search_table(tblName, valuesArray = ["*"], filterArray = [""], orderArray = ["Asc"]):
     for i in range(len(valuesArray) - len(filterArray)):
