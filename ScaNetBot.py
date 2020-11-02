@@ -25,11 +25,23 @@ async def on_ready():
 #Help command
 @bot.command()
 async def register(ctx, *args):
-    NewUserID = MaxUserID+1
+    DiscordID = str(ctx.user.id)
     NewUsername = args[0]
-    NewUserPassword = args[1]
-    DiscordID = ctx.user.id
-    NewRegisterDate = datetime.now()
+
+    QueryString = "SELECT * FROM BasicUserData\n" + where_table(["DiscordID", "Username"], [('"' + DiscordID + '"'), ('"' + NewUsername + '"')], ["=", "="], ["OR", "OR"], True)
+    QueryResult = QueryCursor.execute(QueryString)
+    Unauthorised = QueryResult.fetchall()
+
+    if not Unauthorised:
+        NewUserID = str(MaxUserID+1)
+        NewUserPassword = args[1]
+        NewRegisterDate = datetime.now()
+        NewCurrencyBalance = str(0)
+
+        QueryString = update_table("BasicUserData", ["UserID", "Username", "UserPassword", "Discord", "DiscordID", "RegisterDate", "CurrencyBalance"], [('"' + NewUserID + '"'), ('"' + NewUsername + '"'), ('"' + NewUserPassword + '"'), ('"' + "Yes" + '"'), ('"' + DiscordID + '"'), ('"' + NewRegisterDate.strftime("%Y-%m-%d %H:%M:%S") + '"'), ('"' + NewCurrencyBalance + '"')], False)
+        QueryResult = QueryCursor.execute(QueryString)
+
+        MaxUserID += 1
 
 
 #Bot startup
