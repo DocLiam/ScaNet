@@ -51,7 +51,8 @@ async def help(ctx, *args):
     embed.add_field(name = "Name", value = ctx.author, inline = False)
     await ctx.send(embed = embed)
 
-async def code_push(code):
+def code_push(code):
+    channel = client.get_channel(769356229310939137)
     
 
 #Bot startup
