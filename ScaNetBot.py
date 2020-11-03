@@ -46,15 +46,10 @@ async def register(ctx, *args):
 #Function to set role required for certain tier commands to user specifics
 @bot.command()
 async def setpermrole(ctx, args*):
+    #DiscordID = str(ctx.author.id)
+    #Previous line for a logging service
 
-
-
-@bot.command()
-async def manual_query(ctx, userL discord.Member, *args):
-    DiscordID = str(ctx.author.id)
-
-    if req_role in user.roles():
-        QueryResult = QueryCursor.execute(" ".join(list(args)))
+    pass
 
 #Bot startup
 bot.run('NzY5MzQ0NTE1NDA3NzQwOTU5.X5Np6g.K7KAlBNFRLwbXPoHL1Hs8t2Q--U')
