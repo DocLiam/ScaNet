@@ -46,9 +46,9 @@ async def register(ctx, *args):
 #Help Command
 @bot.command()
 async def help(ctx, *args):
-    DiscordID = ctx.author
-    embed = discord.Embed(title = "Title", color = 0xff779f)
-    embed.add_field(name = "Name", value = ctx.author, inline = False)
+    Author = ctx.author
+    embed = discord.Embed(title = "Help for " + Author.mention, color = 0xff779f)
+    embed.add_field(name = "!register (Username) (UserPassword)", value = "Register", inline = False)
     await ctx.send(embed = embed)
 
 def code_push(code):
