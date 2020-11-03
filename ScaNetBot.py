@@ -1,5 +1,5 @@
 #Library imports
-import Discord
+import discord
 from discord.ext import commands
 import pyodbc
 from PythonSQL import *
@@ -43,13 +43,16 @@ async def register(ctx, *args):
 
         MaxUserID += 1
 
-#Function to set role required for certain tier commands to user specifics
+#Help Command
 @bot.command()
-async def setpermrole(ctx, args*):
-    #DiscordID = str(ctx.author.id)
-    #Previous line for a logging service
+async def help(ctx, *args):
+    DiscordID = ctx.author
+    embed = discord.Embed(title = "Title", color = 0xff779f)
+    embed.add_field(name = "Name", value = ctx.author, inline = False)
+    await ctx.send(embed = embed)
 
-    pass
+async def code_push(code):
+    
 
 #Bot startup
 bot.run('NzY5MzQ0NTE1NDA3NzQwOTU5.X5Np6g.K7KAlBNFRLwbXPoHL1Hs8t2Q--U')
