@@ -18,7 +18,7 @@ client.on('message', message => {
   content = message.content
   channel = message.channel
 
-  if((content.startsWith("!") && channel.type != "dm") || (!content.startsWith("!") && channel.type == "dm")){
+  if(content.startsWith("!")){
     //Help command
     if (content.endsWith("help")) {
       channel.send(helpEmbed);
