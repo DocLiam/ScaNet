@@ -9,7 +9,7 @@ from datetime import *
 DatabaseConn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\progr\Documents\GitHub\ScaNet\ScaNet.accdb;')
 QueryCursor = DatabaseConn.cursor()
 
-#Fetching last UserID
+#Fetching last UserID from database table BasicUserData
 QueryString = "SELECT TOP 1 UserID FROM BasicUserData\n" + order_table(["UserID"], ["DESC"], False)
 QueryResult = QueryCursor.execute(QueryString)
 MaxUserID = QueryResult.fetchall()
@@ -19,10 +19,16 @@ bot = commands.Bot(command_prefix = "!")
 
 @bot.event
 async def on_ready():
-    #Confirmation of connection established
+    global BotHostGuild, BotHostChannel
+
+    #ScaNet Review server and channel objects are fetched. These are referred to as the bot's host environment.
+    BotHostGuild = bot.get_guild(769355986619596841)
+    BotHostChannel = BotHostGuild.get_channel(769356229310939137)
+
+    #Confirmation of connection to Discord established
     print("Logged in as " + bot.user.name)
 
-#Help command
+#Register command
 @bot.command()
 async def register(ctx, *args):
     DiscordID = str(ctx.author.id)
@@ -43,13 +49,10 @@ async def register(ctx, *args):
 
         MaxUserID += 1
 
-#Help Command
+#Post command
 @bot.command()
-async def help(ctx, *args):
-    Author = ctx.author
-    embed = discord.Embed(title = "Help for " + Author.mention, color = 0xff779f)
-    embed.add_field(name = "!register (Username) (UserPassword)", value = "Register", inline = False)
-    await ctx.send(embed = embed)
+async def post(ctx, *args):
+    
 
 def code_push(code):
     channel = client.get_channel(769356229310939137)
