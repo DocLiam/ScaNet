@@ -2,8 +2,9 @@
 import discord
 from discord.ext import commands
 import pyodbc
-from PythonSQL import *
 from datetime import *
+import git
+from PythonSQL import *
 
 #Database setup
 DatabaseConn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\progr\Documents\GitHub\ScaNet\ScaNet.accdb;')
@@ -52,10 +53,9 @@ async def register(ctx, *args):
 #Post command
 @bot.command()
 async def post(ctx, *args):
-    
+    GitHubURL = args[0]
 
-def code_push(code):
-    channel = client.get_channel(769356229310939137)
+    await 
     
 
 #Bot startup
