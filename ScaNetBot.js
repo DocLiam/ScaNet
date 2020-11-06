@@ -40,7 +40,7 @@ bot.on('message', message => {
       .setColor("#a200ff")
       .setTitle("**Help**")
       .setAuthor(MessageAuthor.username, MessageAuthor.avatarURL())
-      .addField("!register (User Name) (User Password)", "Register your Discord account as a ScaNet account, with a Username and Password.", false)
+      .addField("!register (User Name) (User Password) (GitHub token)", "Register your Discord account as a ScaNet account, with a Username and Password.", false)
       .addField("!post (GitHub Link)", "Post your repository to ScaNet for evaluation or submission using a GitHub Repository URL. Be sure to have a description in the Repository.", false);
 
       MessageChannel.send(HelpEmbed);
